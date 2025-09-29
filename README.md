@@ -59,7 +59,7 @@ Siga os passos abaixo para configurar e executar o projeto em sua máquina local
 1.  **Clone o repositório:**
 
     ```bash
-    git clone https://github.com/Eiji-S/cross-time.git
+    git clone https://github.com/Eiji-S/cross_time.git
     cd cross-time
     ```
 
@@ -121,7 +121,7 @@ cross-time/
 └── templates/
 └── index.html # Frontend da aplicação
 
-````
+---
 
 🐛 Solução de Problemas
 
@@ -147,4 +147,4 @@ Contribuições são bem-vindas! Sinta-se à vontade para forkar o projeto, cria
 3.  Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`).
 4.  Push para a branch (`git push origin feature/AmazingFeature`).
 5.  Abra um Pull Request.
-````
+---
