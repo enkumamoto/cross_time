@@ -151,61 +151,31 @@ cross-time/
 ├── README.md # Este arquivo
 └── templates/
 └── index.html # Frontend da aplicação
+
+````
+
 🐛 Solução de Problemas
-Erro "Externally Managed Environment"
-bash
 
-# Use ambiente virtual
+*   **Erro "Externally Managed Environment" no Linux:** Este erro ocorre ao tentar instalar pacotes globalmente. A solução é sempre usar um **ambiente virtual**, conforme descrito no passo 3 da instalação.
+*   **Sem som no Linux:** Verifique se você instalou os pacotes `alsa-utils` e `beep` conforme a nota no passo 4.
+*   **Porta 5000 já em uso:** Se outra aplicação estiver usando a porta 5000, você pode alterá-la no final do arquivo `cross_time.py`:
+    ```python
+    # Altere para a porta desejada, ex: 5001
+    app.run(debug=True, host='0.0.0.0', port=5001)
+    ```
 
-python3 -m venv venv
-source venv/bin/activate
-Sem som no Linux
-bash
-
-# Instale dependências de áudio
-
-sudo apt install alsa-utils beep
-Porta já em uso
-bash
-
-# Altere a porta no cross_time.py
-
-app.run(debug=True, host='0.0.0.0', port=5001)
 📝 Personalização
-Modificando o Tempo de Preparação
-No arquivo cross_time.py, linha ~50:
 
-python
-
-# Alterar de 10 para o valor desejado
-
-for i in range(10, 0, -1):
-Customizando Sinais Sonoros
-Modifique a função beep() no cross_time.py para usar sons personalizados.
+*   **Tempo de Preparação:** Para alterar os 10 segundos iniciais, modifique o loop na função `timer_thread` dentro de `cross_time.py` (linha ~100).
+*   **Sons e Notificações:** As funções `beep()` e `show_popup()` em `cross_time.py` podem ser customizadas para usar arquivos de som (`.mp3`, `.wav`) ou comandos de notificação diferentes.
 
 🤝 Contribuindo
-Fork o projeto
 
-Crie uma branch para sua feature (git checkout -b feature/AmazingFeature)
+Contribuições são bem-vindas! Sinta-se à vontade para forkar o projeto, criar uma branch para sua feature e abrir um Pull Request.
 
-Commit suas mudanças (git commit -m 'Add some AmazingFeature')
-
-Push para a branch (git push origin feature/AmazingFeature)
-
-Abra um Pull Request
-
-📄 Licença
-Este projeto está sob a licença MIT. Veja o arquivo LICENSE para detalhes.
-
-🆕 Versões Futuras
-Configurações salvas automaticamente
-
-Múltiplos perfis de timer
-
-Histórico de sessões
-
-Modo escuro/claro
-
-Notificações personalizadas
-
-Export de relatórios
+1.  Fork o projeto.
+2.  Crie sua branch de feature (`git checkout -b feature/AmazingFeature`).
+3.  Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`).
+4.  Push para a branch (`git push origin feature/AmazingFeature`).
+5.  Abra um Pull Request.
+````
