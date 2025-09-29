@@ -1,149 +1,118 @@
-⏰ Cross Time - Cronômetro Inteligente
-Um cronômetro inteligente desenvolvido em Python com Flask para controle de tempo com rounds, descansos e sinais sonoros.
+<div align="center">
 
-🚀 Funcionalidades
-⏱️ Contagem Progressiva: Tempo dos rounds conta progressivamente
+  <img src="https://raw.githubusercontent.com/Eiji-S/cross-time/main/assets/logo.png" alt="Cross Time Logo" width="150">
 
-🔄 Múltiplos Rounds: Configure quantos rounds desejar
+# Cross Time - Cronômetro Inteligente
 
-☕ Tempo de Descanso: Intervalos entre rounds com contagem regressiva
+**Um cronômetro web inteligente para gerenciamento de tempo, ideal para treinos, estudos e produtividade.**
 
-🔊 Sinais Sonoros: Alertas audíveis em intervalos configuráveis
+  <p>
+    <img alt="Python" src="https://img.shields.io/badge/Python-3.7%2B-blue?style=for-the-badge&logo=python">
+    <img alt="Flask" src="https://img.shields.io/badge/Flask-2.3.3-black?style=for-the-badge&logo=flask">
+    <img alt="License" src="https://img.shields.io/github/license/Eiji-S/cross-time?style=for-the-badge">
+  </p>
 
-🎯 Contagem Regressiva Inicial: 10 segundos de preparação antes do primeiro round
+</div>
 
-📱 Interface Web: Frontend responsivo e intuitivo
+---
 
-⏹️ Controle em Tempo Real: Iniciar, parar e monitorar o progresso
+**Cross Time** é uma aplicação web construída com Python e Flask que oferece um cronômetro altamente configurável. Crie sessões de trabalho, estudo ou treino com múltiplos rounds, pausas para descanso e alertas sonoros, tudo controlado por uma interface simples e intuitiva.
 
-🛠️ Tecnologias Utilizadas
-Backend: Python 3.7+, Flask
+## 📋 Índice
 
-Frontend: HTML5, CSS3, JavaScript
+- [✨ Funcionalidades](#-funcionalidades)
+- [🛠️ Tecnologias](#-tecnologias)
+- [🚀 Começando](#-começando)
+  - [Pré-requisitos](#pré-requisitos)
+  - [Instalação](#instalação)
+- [🎮 Como Usar](#-como-usar)
+- [🔧 Estrutura do Projeto](#-estrutura-do-projeto)
+- [🤝 Contribuindo](#-contribuindo)
+- [📄 Licença](#-licença)
 
-Multiplataforma: Compatível com Windows, Linux e macOS
+## ✨ Funcionalidades
 
-Sinais Sonoros: Suporte nativo para cada sistema operacional
+- **🔄 Múltiplos Rounds:** Divida o tempo total em quantos rounds precisar.
+- **☕ Descanso Configurável:** Defina pausas com contagem regressiva entre os rounds.
+- **🔊 Alertas Sonoros:** Receba alertas em intervalos de tempo e nas transições de fase.
+- **🎯 Contagem Inicial:** Tenha 10 segundos de preparação antes do início da sessão.
+- **📊 Progresso em Tempo Real:** Monitore o tempo e o progresso do round atual e da sessão total.
+- **📱 Interface Web Intuitiva:** Frontend limpo, responsivo e fácil de usar.
+- **🖥️ Multiplataforma:** Compatível com Windows, macOS e Linux, incluindo suporte a notificações e sons nativos.
 
-📦 Instalação
-Pré-requisitos
-Python 3.7 ou superior
+## 🛠️ Tecnologias
 
-pip (gerenciador de pacotes do Python)
+- **Backend:** Python 3.7+, Flask
+- **Frontend:** HTML5, CSS3, JavaScript (Vanilla)
 
-Passos para Instalação
-Clone o repositório:
+## 🚀 Começando
 
-bash
-git clone <url-do-repositorio>
-cd cross-time
-Crie um ambiente virtual (recomendado):
+Siga os passos abaixo para configurar e executar o projeto em sua máquina local.
 
-bash
-python3 -m venv venv
-source venv/bin/activate # Linux/Mac
+### Pré-requisitos
 
-# ou
+- **Python 3.7 ou superior**
+- **Git**
 
-venv\Scripts\activate # Windows
-Instale as dependências:
+### Instalação
 
-bash
-pip install Flask==2.3.3
-Instale dependências do sistema (Linux):
+1.  **Clone o repositório:**
 
-bash
+    ```bash
+    git clone https://github.com/Eiji-S/cross-time.git
+    cd cross-time
+    ```
 
-# Para sinais sonoros
+2.  **Crie e ative um ambiente virtual** (altamente recomendado):
 
-sudo apt update
-sudo apt install alsa-utils
+    ```bash
+    # Linux / macOS
+    python3 -m venv venv
+    source venv/bin/activate
 
-# Para notificações desktop
+    # Windows
+    python -m venv venv
+    .\venv\Scripts\activate
+    ```
 
-sudo apt install libnotify-bin
-🎮 Como Usar
-Configuração Básica
-Tempo Total: Duração total em minutos (ex: 15 minutos)
+3.  **Instale as dependências** a partir do arquivo `requirements.txt`:
 
-Rounds: Número de divisões do tempo total (ex: 3 rounds)
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Descanso: Tempo de pausa entre rounds em segundos (ex: 30 segundos)
+    > **Nota para usuários Linux:** Para a melhor experiência com sons e notificações, instale as seguintes dependências do sistema:
+    >
+    > ```bash
+    > sudo apt update && sudo apt install alsa-utils libnotify-bin
+    > ```
 
-Intervalo: Sinal sonoro a cada X minutos (0 para desativar)
+4.  **Execute a aplicação:**
 
-Exemplo de Configuração
-Tempo Total: 15 minutos
+    ```bash
+    python cross_time.py
+    ```
 
-Rounds: 3
+5.  **Acesse no navegador:**
+    Abra seu navegador e visite **http://localhost:5000**.
 
-Descanso: 30 segundos
+## 🎮 Como Usar
 
-Intervalo: 5 minutos
+1.  **Configure sua sessão** no formulário principal:
 
-Resultado: 3 rounds de 5 minutos cada, com 30 segundos de descanso entre eles, e sinal sonoro a cada 5 minutos.
+    - `Tempo Total (minutos)`: Duração completa da atividade.
+    - `Número de Rounds`: Em quantas partes o tempo será dividido.
+    - `Tempo de Descanso (segundos)`: Pausa entre cada round.
+    - `Intervalo para Sinal Sonoro (minutos)`: Emite um som a cada `X` minutos (use `0` para desativar).
 
-Fluxo de Execução
-Preparação: 10 segundos de contagem regressiva
+2.  **Inicie o cronômetro** clicando em `▶ Iniciar Timer` ou pressionando a tecla `Enter`.
 
-Round 1: Contagem progressiva de 0 até 5:00
+3.  **Acompanhe o progresso** em tempo real nos painéis de informação.
 
-Descanso: 30 segundos de contagem regressiva
+4.  **Pare a sessão** a qualquer momento clicando em `⏹ Parar Timer`.
 
-Round 2: Inicia imediatamente após o descanso
+## Estrutura do Projeto
 
-Repetição: Continua até completar todos os rounds
-
-🖥️ Executando a Aplicação
-Inicie o servidor:
-
-bash
-python cross_time.py
-Acesse no navegador:
-
-text
-http://localhost:5000
-Configure e inicie o timer:
-
-Preencha os campos desejados
-
-Clique em "Iniciar Timer"
-
-Acompanhe o progresso em tempo real
-
-🎯 Casos de Uso
-🏋️‍♂️ Treinos e Exercícios
-Timer de HIIT: Rounds intensos com descansos controlados
-
-Treino em Circuito: Múltiplos exercícios com tempo definido
-
-Alongamento: Tempos progressivos para cada posição
-
-📚 Estudos e Produtividade
-Técnica Pomodoro: 25 minutos de foco, 5 minutos de descanso
-
-Sessões de Estudo: Múltiplas sessões com pausas programadas
-
-Revisões: Tempos dedicados para diferentes matérias
-
-💼 Reuniões e Apresentações
-Timeboxing: Controle de tempo para cada tópico
-
-Apresentações: Divisão do tempo entre seções
-
-Brainstorming: Rounds cronometrados para ideias
-
-⌨️ Comandos Rápidos
-Enter: Iniciar timer (quando o formulário está em foco)
-
-Botão "Iniciar Timer": Inicia o cronômetro
-
-Botão "Parar Timer": Interrompe a execução atual
-
-Botão "Limpar": Reseta o formulário
-
-🔧 Estrutura do Projeto
-text
 cross-time/
 │
 ├── cross_time.py # Backend Flask
