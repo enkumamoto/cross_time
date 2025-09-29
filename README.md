@@ -112,7 +112,7 @@ Siga os passos abaixo para configurar e executar o projeto em sua máquina local
 4.  **Pare a sessão** a qualquer momento clicando em `⏹ Parar Timer`.
 
 ## Estrutura do Projeto
-
+```
 cross-time/
 │
 ├── cross_time.py # Backend Flask
@@ -120,6 +120,7 @@ cross-time/
 ├── README.md # Este arquivo
 └── templates/
 └── index.html # Frontend da aplicação
+```
 
 ---
 
