@@ -3,7 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cronômetro Inteligente</title>
+    <title>Cronômetro Gamer</title>
+
+    <!-- Fonte Pixelada -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
       * {
         margin: 0;
@@ -12,254 +19,180 @@
       }
 
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        font-family: "Press Start 2P", monospace;
+        background: linear-gradient(135deg, #ff4d4d, #cc0000, #660000);
         min-height: 100vh;
-        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
       }
 
       .container {
-        max-width: 600px;
-        margin: 0 auto;
-        background: white;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        overflow: hidden;
+        width: 100%;
+        max-width: 750px;
+        background: #1a0000;
+        border: 6px solid #ff1a1a;
+        box-shadow: 0 0 20px #ff3333, 0 0 40px #ff0000 inset;
+        padding: 20px;
       }
 
       .header {
-        background: linear-gradient(135deg, #2c3e50, #34495e);
-        color: white;
-        padding: 30px;
         text-align: center;
-      }
-
-      .header h1 {
-        font-size: 2.5em;
-        margin-bottom: 10px;
-      }
-
-      .controls {
-        padding: 30px;
-      }
-
-      .form-group {
+        color: #fff;
         margin-bottom: 20px;
       }
 
+      .header h1 {
+        font-size: 1rem;
+        text-shadow: 0 0 8px #ff4d4d, 0 0 15px #ff0000;
+        margin-bottom: 10px;
+      }
+
+      .header p {
+        font-size: 0.6rem;
+        color: #ffcccc;
+      }
+
+      .controls {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
       label {
-        display: block;
+        font-size: 0.6rem;
+        color: #ffcccc;
         margin-bottom: 5px;
-        font-weight: 600;
-        color: #2c3e50;
       }
 
       input {
         width: 100%;
-        padding: 12px;
-        border: 2px solid #e9ecef;
-        border-radius: 8px;
-        font-size: 16px;
-        transition: border-color 0.3s;
+        padding: 10px;
+        background: #330000;
+        border: 3px solid #ff1a1a;
+        color: #fff;
+        font-size: 0.7rem;
+        text-align: center;
+        font-family: "Press Start 2P", monospace;
       }
 
       input:focus {
         outline: none;
-        border-color: #667eea;
+        border-color: #ff4d4d;
+        box-shadow: 0 0 10px #ff4d4d;
       }
 
       .row {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 15px;
+        gap: 10px;
       }
 
       .button-group {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 15px;
-        margin-top: 30px;
+        gap: 10px;
+        margin-top: 10px;
       }
 
       button {
-        padding: 15px;
+        padding: 12px;
         border: none;
-        border-radius: 8px;
-        font-size: 16px;
-        font-weight: 600;
+        font-size: 0.6rem;
+        font-family: "Press Start 2P", monospace;
         cursor: pointer;
-        transition: all 0.3s;
+        background: #ff1a1a;
+        color: #fff;
+        box-shadow: 0 0 5px #ff4d4d, inset 0 0 10px #800000;
+        transition: transform 0.2s, box-shadow 0.2s;
       }
 
-      .btn-primary {
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        color: white;
+      button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px #ff6666, inset 0 0 15px #ff0000;
       }
 
       .btn-secondary {
-        background: #6c757d;
-        color: white;
-      }
-
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      }
-
-      .btn-secondary:hover {
-        background: #5a6268;
+        background: #800000;
       }
 
       .btn-danger {
-        background: #dc3545;
-        color: white;
+        background: #b30000;
       }
 
-      .btn-danger:hover {
-        background: #c82333;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      }
-
-      .timer-display {
-        background: #2c3e50;
-        color: white;
-        padding: 40px;
-        border-radius: 10px;
+      .info-card {
+        background: #1a0000;
+        border: 3px solid #ff1a1a;
+        padding: 10px;
+        color: #ffcccc;
         text-align: center;
-        margin-top: 20px;
-        display: none;
+        font-size: 0.6rem;
       }
 
-      .timer-display.active {
-        display: block;
+      .info-card .value {
+        color: #fff;
+        font-size: 0.7rem;
       }
 
-      .countdown-display {
-        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-        color: white;
-        padding: 40px;
-        border-radius: 10px;
-        text-align: center;
-        margin-top: 20px;
-        display: none;
-      }
-
-      .countdown-display.active {
-        display: block;
-        animation: pulse 1s infinite;
-      }
-
+      .timer-display,
+      .countdown-display,
       .rest-display {
-        background: linear-gradient(135deg, #fdcb6e, #e17055);
-        color: #2d3436;
-        padding: 40px;
-        border-radius: 10px;
-        text-align: center;
         margin-top: 20px;
+        padding: 20px;
+        border: 4px solid #ff4d4d;
+        text-align: center;
+        background: #260000;
         display: none;
+        color: #fff;
       }
 
+      .timer-display.active,
+      .countdown-display.active,
       .rest-display.active {
         display: block;
       }
 
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.05);
-        }
-        100% {
-          transform: scale(1);
-        }
-      }
-
-      .time-numbers {
-        font-size: 4em;
-        font-weight: bold;
-        font-family: "Courier New", monospace;
-        margin: 20px 0;
-      }
-
+      .time-numbers,
       .countdown-numbers {
-        font-size: 5em;
-        font-weight: bold;
-        font-family: "Courier New", monospace;
+        font-size: clamp(1rem, 6vw, 2rem);
+        color: #ff6666;
         margin: 20px 0;
+        text-shadow: 0 0 8px #ff1a1a, 0 0 15px #ff0000;
       }
 
       .phase-indicator {
-        font-size: 1.5em;
-        font-weight: bold;
-        margin: 15px 0;
-        padding: 10px;
-        border-radius: 8px;
-      }
-
-      .phase-work {
-        background: #00b894;
-        color: white;
-      }
-
-      .phase-rest {
-        background: #fdcb6e;
-        color: #2d3436;
-      }
-
-      .phase-countdown {
-        background: #e17055;
-        color: white;
-      }
-
-      .timer-info {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
-        margin-top: 15px;
-      }
-
-      .info-card {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 15px;
-        border-radius: 8px;
-        text-align: center;
-      }
-
-      .info-card h4 {
-        margin-bottom: 5px;
-        font-size: 0.9em;
-        opacity: 0.8;
-      }
-
-      .info-card .value {
-        font-size: 1.3em;
-        font-weight: bold;
+        margin-top: 10px;
+        padding: 8px;
+        background: #4d0000;
+        border: 3px solid #ff3333;
+        font-size: 0.6rem;
+        color: #fff;
       }
 
       .progress-bar {
         width: 100%;
-        height: 20px;
-        background: #34495e;
-        border-radius: 10px;
-        overflow: hidden;
-        margin: 20px 0;
+        height: 18px;
+        background: #330000;
+        border: 3px solid #ff1a1a;
+        margin: 15px 0;
       }
 
       .progress-fill {
         height: 100%;
-        background: linear-gradient(90deg, #00b09b, #96c93d);
+        width: 0%;
+        background: #ff3333;
         transition: width 0.5s ease;
       }
 
       .stop-section {
-        text-align: center;
+        background: #330000;
+        border: 3px solid #b30000;
+        color: #ffcccc;
         margin-top: 20px;
         padding: 20px;
-        background: #f8d7da;
-        border-radius: 8px;
         display: none;
+        text-align: center;
       }
 
       .stop-section.active {
@@ -267,448 +200,307 @@
       }
 
       .status-message {
-        text-align: center;
-        padding: 15px;
         margin-top: 15px;
-        border-radius: 8px;
-        display: none;
+        text-align: center;
+        font-size: 0.6rem;
+        color: #fff;
       }
 
       .status-success {
-        background: #d4edda;
-        color: #155724;
-        display: block;
+        color: #00ff66;
       }
 
       .status-error {
-        background: #f8d7da;
-        color: #721c24;
-        display: block;
+        color: #ff3333;
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 10px;
+        }
+
+        button {
+          font-size: 0.5rem;
+          padding: 8px;
+        }
+
+        .time-numbers,
+        .countdown-numbers {
+          font-size: 1.2rem;
+        }
       }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="header">
-        <h1>⏰ Cronômetro Inteligente</h1>
-        <p>Controle seu tempo de forma eficiente</p>
+        <h1>🔥 Cronômetro Gamer 🔥</h1>
+        <p>Modo Arcade do Tempo</p>
       </div>
 
       <div class="controls">
-        <div class="form-group">
+        <div>
           <label for="totalTime">Tempo Total (minutos):</label>
-          <input
-            type="number"
-            id="totalTime"
-            placeholder="Ex: 15"
-            min="1"
-            value="2"
-          />
+          <input type="number" id="totalTime" min="1" value="2" />
         </div>
 
-        <div class="form-group">
+        <div>
           <label for="interval">Intervalo para Sinal Sonoro (minutos):</label>
-          <input
-            type="number"
-            id="interval"
-            placeholder="Ex: 5 (0 para desativar)"
-            min="0"
-            value="1"
-          />
+          <input type="number" id="interval" min="0" value="1" />
         </div>
 
         <div class="row">
-          <div class="form-group">
+          <div>
             <label for="rounds">Número de Rounds:</label>
-            <input
-              type="number"
-              id="rounds"
-              placeholder="Ex: 3"
-              min="1"
-              value="3"
-            />
+            <input type="number" id="rounds" min="1" value="3" />
           </div>
-          <div class="form-group">
+          <div>
             <label for="restTime">Tempo de Descanso (segundos):</label>
-            <input
-              type="number"
-              id="restTime"
-              placeholder="Ex: 30 segundos"
-              min="0"
-              value="10"
-            />
+            <input type="number" id="restTime" min="0" value="10" />
           </div>
         </div>
 
-        <div
-          class="info-card"
-          style="background: #e3f2fd; color: #1565c0; margin: 15px 0"
-        >
+        <div class="info-card">
           <h4>📝 Configuração Atual</h4>
           <div id="configSummary">3 rounds de 40 segundos cada</div>
         </div>
 
         <div class="button-group">
-          <button class="btn-primary" onclick="startTimer()">
-            ▶ Iniciar Timer
-          </button>
-          <button class="btn-secondary" onclick="resetForm()">🔄 Limpar</button>
+          <button onclick="startTimer()">▶ START</button>
+          <button class="btn-secondary" onclick="resetForm()">RESET</button>
         </div>
 
-        <!-- Display da Contagem Regressiva (Preparação) -->
+        <!-- Countdown -->
         <div class="countdown-display" id="countdownDisplay">
-          <h3>🎯 Preparando para o Round</h3>
+          <h3>🎯 Preparando...</h3>
           <div class="countdown-numbers" id="countdownNumbers">10</div>
-          <div class="phase-indicator phase-countdown">
-            Round <span id="nextRoundNumber">1</span> começando em...
+          <div class="phase-indicator">
+            Round <span id="nextRoundNumber">1</span> começando...
           </div>
         </div>
 
-        <!-- Display do Descanso -->
+        <!-- Rest -->
         <div class="rest-display" id="restDisplay">
-          <h3>☕ Tempo de Descanso</h3>
+          <h3>☕ Descanso</h3>
           <div class="countdown-numbers" id="restNumbers">10</div>
-          <div class="phase-indicator phase-rest">
+          <div class="phase-indicator">
             Round <span id="restRoundNumber">1</span> finalizado
           </div>
-          <p>Próximo round em...</p>
         </div>
 
-        <!-- Display do Cronômetro Ativo -->
+        <!-- Timer ativo -->
         <div class="timer-display" id="timerDisplay">
-          <div class="phase-indicator" id="phaseIndicator">Trabalho</div>
+          <div class="phase-indicator" id="phaseIndicator">WORK</div>
           <div class="time-numbers" id="timeDisplay">00:00</div>
 
           <div class="progress-bar">
-            <div
-              class="progress-fill"
-              id="roundProgressFill"
-              style="width: 0%"
-            ></div>
+            <div class="progress-fill" id="roundProgressFill"></div>
           </div>
 
-          <div class="timer-info">
-            <div class="info-card">
-              <h4>Round</h4>
-              <div class="value" id="currentRound">1/3</div>
-            </div>
-            <div class="info-card">
-              <h4>Tempo do Round</h4>
-              <div class="value" id="roundTime">00:00</div>
-            </div>
+          <div class="info-card">
+            Round <span class="value" id="currentRound">1/3</span>
           </div>
-
-          <div class="timer-info">
-            <div class="info-card">
-              <h4>Progresso do Round</h4>
-              <div class="value" id="roundProgress">0%</div>
-            </div>
-            <div class="info-card">
-              <h4>Progresso Total</h4>
-              <div class="value" id="totalProgress">0%</div>
-            </div>
+          <div class="info-card">
+            Tempo do Round: <span class="value" id="roundTime">00:00</span>
+          </div>
+          <div class="info-card">
+            Progresso Round: <span class="value" id="roundProgress">0%</span>
+          </div>
+          <div class="info-card">
+            Progresso Total: <span class="value" id="totalProgress">0%</span>
           </div>
         </div>
 
-        <!-- Seção de Parada -->
+        <!-- Stop -->
         <div class="stop-section" id="stopSection">
-          <h3>⏹️ Timer Ativo</h3>
-          <p>
-            Um cronômetro está em execução. Use o botão abaixo para pará-lo.
-          </p>
-          <button class="btn-danger" onclick="stopTimer()">
-            ⏹ Parar Timer
-          </button>
+          <h3>⏹ TIMER ATIVO</h3>
+          <p>Use o botão abaixo para parar.</p>
+          <button class="btn-danger" onclick="stopTimer()">STOP</button>
         </div>
 
-        <!-- Mensagem de Status -->
+        <!-- Status -->
         <div class="status-message" id="statusMessage"></div>
       </div>
     </div>
 
     <script>
-      let currentTimerId = null;
-      let statusInterval = null;
+      let timerInterval, countdownInterval, restInterval;
+      let totalSeconds, roundSeconds, restSeconds;
+      let rounds, currentRound, intervalMinutes, elapsedTotal;
+      let isRunning = false;
 
-      // Formatador de tempo (segundos para MM:SS)
-      function formatTime(seconds) {
-        const mins = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${mins.toString().padStart(2, "0")}:${secs
-          .toString()
-          .padStart(2, "0")}`;
-      }
+      function startTimer() {
+        if (isRunning) return;
+        isRunning = true;
 
-      // Atualizar resumo da configuração
-      function updateConfigSummary() {
-        const totalTime =
-          parseInt(document.getElementById("totalTime").value) || 0;
-        const rounds = parseInt(document.getElementById("rounds").value) || 1;
-        const roundDuration = (totalTime * 60) / rounds;
+        totalSeconds =
+          parseInt(document.getElementById("totalTime").value) * 60;
+        intervalMinutes = parseInt(document.getElementById("interval").value);
+        rounds = parseInt(document.getElementById("rounds").value);
+        restSeconds = parseInt(document.getElementById("restTime").value);
 
-        if (totalTime > 0 && rounds > 0) {
-          const summary = `${rounds} rounds de ${formatTime(
-            roundDuration
-          )} cada`;
-          document.getElementById("configSummary").textContent = summary;
-        }
-      }
+        roundSeconds = totalSeconds / rounds;
+        currentRound = 1;
+        elapsedTotal = 0;
 
-      // Mostrar mensagem de status
-      function showStatus(message, type = "success") {
-        const statusElement = document.getElementById("statusMessage");
-        statusElement.textContent = message;
-        statusElement.className = `status-message status-${type}`;
-        setTimeout(() => {
-          statusElement.style.display = "none";
-        }, 3000);
-      }
+        document.getElementById(
+          "configSummary"
+        ).innerText = `${rounds} rounds de ${Math.round(
+          roundSeconds
+        )} segundos cada`;
 
-      // Resetar formulário
-      function resetForm() {
-        document.getElementById("totalTime").value = "2";
-        document.getElementById("interval").value = "1";
-        document.getElementById("rounds").value = "3";
-        document.getElementById("restTime").value = "10";
-        updateConfigSummary();
-        hideAllDisplays();
-        showStatus("Formulário limpo");
-      }
-
-      // Atualizar display do cronômetro
-      function updateTimerDisplay() {
-        if (!currentTimerId) {
-          hideAllDisplays();
-          return;
-        }
-
-        fetch(`/timer_status/${currentTimerId}`)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Timer não encontrado");
-            }
-            return response.json();
-          })
-          .then((data) => {
-            // Verificar se o timer foi parado
-            if (!data.is_running) {
-              stopTimerDisplay();
-              showStatus("Timer finalizado", "success");
-              return;
-            }
-
-            // Contagem regressiva (preparação antes do round)
-            if (data.is_countdown && data.current_phase === "countdown") {
-              showCountdownDisplay(data);
-              return;
-            }
-
-            // Fase de descanso
-            if (data.current_phase === "rest") {
-              showRestDisplay(data);
-              return;
-            }
-
-            // Fase de trabalho (contagem progressiva)
-            if (data.current_phase === "work") {
-              showWorkDisplay(data);
-              return;
-            }
-          })
-          .catch((error) => {
-            console.log("Timer finalizado ou não encontrado:", error);
-            stopTimerDisplay();
-          });
-      }
-
-      function showCountdownDisplay(data) {
         document.getElementById("countdownDisplay").classList.add("active");
-        document.getElementById("restDisplay").classList.remove("active");
-        document.getElementById("timerDisplay").classList.remove("active");
         document.getElementById("stopSection").classList.add("active");
+        document.getElementById("statusMessage").innerText = "";
 
-        document.getElementById("countdownNumbers").textContent =
-          data.countdown_seconds;
-        document.getElementById("nextRoundNumber").textContent =
-          data.current_round;
+        let countdown = 10;
+        document.getElementById("countdownNumbers").innerText = countdown;
+        document.getElementById("nextRoundNumber").innerText = currentRound;
+
+        countdownInterval = setInterval(() => {
+          countdown--;
+          document.getElementById("countdownNumbers").innerText = countdown;
+          if (countdown <= 0) {
+            clearInterval(countdownInterval);
+            document
+              .getElementById("countdownDisplay")
+              .classList.remove("active");
+            runRound();
+          }
+        }, 1000);
       }
 
-      function showRestDisplay(data) {
-        document.getElementById("countdownDisplay").classList.remove("active");
-        document.getElementById("restDisplay").classList.add("active");
-        document.getElementById("timerDisplay").classList.remove("active");
-        document.getElementById("stopSection").classList.add("active");
+      function runRound() {
+        let remaining = roundSeconds;
+        updateTimerDisplay(remaining);
 
-        document.getElementById("restNumbers").textContent =
-          data.countdown_seconds;
-        document.getElementById("restRoundNumber").textContent =
-          data.current_round - 1;
-      }
-
-      function showWorkDisplay(data) {
-        document.getElementById("countdownDisplay").classList.remove("active");
-        document.getElementById("restDisplay").classList.remove("active");
         document.getElementById("timerDisplay").classList.add("active");
-        document.getElementById("stopSection").classList.add("active");
 
-        const timeDisplay = document.getElementById("timeDisplay");
-        const phaseIndicator = document.getElementById("phaseIndicator");
-        const currentRound = document.getElementById("currentRound");
-        const roundTime = document.getElementById("roundTime");
-        const roundProgress = document.getElementById("roundProgress");
-        const totalProgress = document.getElementById("totalProgress");
-        const roundProgressFill = document.getElementById("roundProgressFill");
+        timerInterval = setInterval(() => {
+          remaining--;
+          elapsedTotal++;
+          updateTimerDisplay(remaining);
 
-        // Atualizar informações do round
-        phaseIndicator.className = "phase-indicator phase-work";
-        phaseIndicator.textContent = `🎯 Round ${data.current_round} - Trabalho`;
+          if (
+            intervalMinutes > 0 &&
+            elapsedTotal % (intervalMinutes * 60) === 0
+          ) {
+            playBeep();
+          }
 
-        timeDisplay.textContent = formatTime(data.round_elapsed);
-        roundTime.textContent = `${formatTime(
-          data.round_elapsed
-        )} / ${formatTime(data.round_duration)}`;
-        currentRound.textContent = `${data.current_round}/${data.total_rounds}`;
-
-        // Atualizar barras de progresso
-        const roundProgressPercent = data.round_progress || 0;
-        const totalProgressPercent = data.progress || 0;
-
-        roundProgressFill.style.width = `${roundProgressPercent}%`;
-        roundProgress.textContent = `${Math.round(roundProgressPercent)}%`;
-        totalProgress.textContent = `${Math.round(totalProgressPercent)}%`;
+          if (remaining <= 0) {
+            clearInterval(timerInterval);
+            if (currentRound < rounds) {
+              runRest();
+            } else {
+              finishTimer();
+            }
+          }
+        }, 1000);
       }
 
-      function hideAllDisplays() {
+      function runRest() {
+        let remainingRest = restSeconds;
+        document.getElementById("timerDisplay").classList.remove("active");
+        document.getElementById("restDisplay").classList.add("active");
+        document.getElementById("restNumbers").innerText = remainingRest;
+        document.getElementById("restRoundNumber").innerText = currentRound;
+
+        restInterval = setInterval(() => {
+          remainingRest--;
+          document.getElementById("restNumbers").innerText = remainingRest;
+          if (remainingRest <= 0) {
+            clearInterval(restInterval);
+            document.getElementById("restDisplay").classList.remove("active");
+            currentRound++;
+            runRound();
+          }
+        }, 1000);
+      }
+
+      function updateTimerDisplay(remaining) {
+        let minutes = Math.floor(remaining / 60);
+        let seconds = remaining % 60;
+        document.getElementById("timeDisplay").innerText = `${String(
+          minutes
+        ).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+
+        document.getElementById(
+          "currentRound"
+        ).innerText = `${currentRound}/${rounds}`;
+        document.getElementById("roundTime").innerText = `${Math.round(
+          roundSeconds
+        )}s`;
+        document.getElementById("roundProgress").innerText = `${Math.round(
+          ((roundSeconds - remaining) / roundSeconds) * 100
+        )}%`;
+        document.getElementById("totalProgress").innerText = `${Math.round(
+          (elapsedTotal / totalSeconds) * 100
+        )}%`;
+
+        document.getElementById("roundProgressFill").style.width = `${
+          ((roundSeconds - remaining) / roundSeconds) * 100
+        }%`;
+      }
+
+      function stopTimer() {
+        clearInterval(timerInterval);
+        clearInterval(countdownInterval);
+        clearInterval(restInterval);
+        isRunning = false;
+
         document.getElementById("timerDisplay").classList.remove("active");
         document.getElementById("countdownDisplay").classList.remove("active");
         document.getElementById("restDisplay").classList.remove("active");
         document.getElementById("stopSection").classList.remove("active");
+
+        document.getElementById("statusMessage").innerText =
+          "⏹ Timer parado manualmente.";
+        document.getElementById("statusMessage").className =
+          "status-message status-error";
       }
 
-      // Parar display do cronômetro
-      function stopTimerDisplay() {
-        if (statusInterval) {
-          clearInterval(statusInterval);
-          statusInterval = null;
-        }
-        hideAllDisplays();
-        currentTimerId = null;
+      function finishTimer() {
+        isRunning = false;
+        document.getElementById("timerDisplay").classList.remove("active");
+        document.getElementById("stopSection").classList.remove("active");
+
+        document.getElementById("statusMessage").innerText =
+          "✅ Todos os rounds concluídos!";
+        document.getElementById("statusMessage").className =
+          "status-message status-success";
+        playBeep(true);
       }
 
-      // Iniciar timer
-      function startTimer() {
-        const totalTime = parseInt(document.getElementById("totalTime").value);
-        const interval =
-          parseInt(document.getElementById("interval").value) || 0;
-        const rounds = parseInt(document.getElementById("rounds").value) || 1;
-        const restTime =
-          parseInt(document.getElementById("restTime").value) || 0;
-
-        if (!totalTime || totalTime <= 0) {
-          alert("Por favor, informe um tempo total válido!");
-          return;
-        }
-
-        if (!rounds || rounds <= 0) {
-          alert("Por favor, informe um número de rounds válido!");
-          return;
-        }
-
-        const roundDuration = (totalTime * 60) / rounds;
-        if (roundDuration <= 0) {
-          alert("O tempo por round deve ser maior que 0!");
-          return;
-        }
-
-        const data = {
-          total_time: totalTime,
-          interval: interval,
-          rounds: rounds,
-          rest_time: restTime,
-        };
-
-        fetch("/start_timer", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.error) {
-              alert(data.error);
-              return;
-            }
-
-            currentTimerId = data.timer_id;
-            showStatus(`Timer ${data.timer_id} iniciado com sucesso`);
-
-            // Iniciar atualização do display do cronômetro
-            if (statusInterval) {
-              clearInterval(statusInterval);
-            }
-            statusInterval = setInterval(updateTimerDisplay, 100);
-            updateTimerDisplay(); // Chamada inicial
-          })
-          .catch((error) => {
-            console.error("Erro:", error);
-            alert("Erro ao iniciar timer");
-          });
+      function resetForm() {
+        if (isRunning) stopTimer();
+        document.getElementById("totalTime").value = 2;
+        document.getElementById("interval").value = 1;
+        document.getElementById("rounds").value = 3;
+        document.getElementById("restTime").value = 10;
+        document.getElementById("configSummary").innerText =
+          "3 rounds de 40 segundos cada";
+        document.getElementById("statusMessage").innerText = "";
       }
 
-      // Parar timer
-      function stopTimer() {
-        if (!currentTimerId) {
-          alert("Nenhum timer ativo para parar!");
-          return;
-        }
-
-        fetch(`/stop_timer/${currentTimerId}`)
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.stopped) {
-              showStatus("Timer parado com sucesso", "success");
-              stopTimerDisplay();
-            } else {
-              showStatus("Erro ao parar timer", "error");
-            }
-          })
-          .catch((error) => {
-            console.error("Erro:", error);
-            showStatus("Erro ao parar timer", "error");
-          });
+      function playBeep(long = false) {
+        let duration = long ? 500 : 200;
+        let freq = 1000;
+        let ctx = new (window.AudioContext || window.webkitAudioContext)();
+        let osc = ctx.createOscillator();
+        let gain = ctx.createGain();
+        osc.type = "square";
+        osc.frequency.value = freq;
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        gain.gain.setValueAtTime(1, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(
+          0.0001,
+          ctx.currentTime + duration / 1000
+        );
+        osc.stop(ctx.currentTime + duration / 1000);
       }
-
-      // Atualizar configuração quando os valores mudam
-      document
-        .getElementById("totalTime")
-        .addEventListener("input", updateConfigSummary);
-      document
-        .getElementById("rounds")
-        .addEventListener("input", updateConfigSummary);
-
-      // Enter para iniciar timer
-      document.addEventListener("keypress", function (event) {
-        if (event.key === "Enter") {
-          startTimer();
-        }
-      });
-
-      // Verificar timers ativos ao carregar a página
-      window.addEventListener("load", function () {
-        updateConfigSummary();
-        fetch("/active_timers")
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.active_count > 0 && data.timers.length > 0) {
-              currentTimerId = data.timers[0];
-              statusInterval = setInterval(updateTimerDisplay, 100);
-              updateTimerDisplay();
-              showStatus("Timer anterior detectado - reconectado");
-            }
-          });
-      });
     </script>
   </body>
 </html>
